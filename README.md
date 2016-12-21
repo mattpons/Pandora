@@ -9,6 +9,11 @@ npm start
 ```
 
 ## Endpoints
+* GET:  /api
+
+ Lists each endpoint with its method
+
+<br/> 
 * GET:  /randString
 
  Generates a random 32 byte hex string

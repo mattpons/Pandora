@@ -10,6 +10,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+function getEndpoints() {
+
+    const routes = app._router.stack  // registered routes
+        .filter(r => r.route)        // take out all the middleware
+        .map(r => r.route);         // get all the routes
+
+    const endpoints = [];
+    routes.forEach(route => {
+        const path = route.path; // path
+        const method = route.stack[0].method.toUpperCase(); // method
+        endpoints.push({ path, method })
+    });
+
+    return endpoints;
+}
+
+app.get('/api', (req, res, next) => {
+    const endpoints = getEndpoints();
+    res.status(200).end(JSON.stringify({ endpoints }, null, 2));
+});
+
 app.get('/randString', (req, res, next) => {
     const randString = box.cryptoRand();
     res.status(200).end(JSON.stringify({ randString }, null, 2));
