@@ -1,9 +1,10 @@
 {
   "name": "pandora",
   "version": "0.0.0",
-  "description": "Simple express service to house some message transformation logic",
+  "description": "Simple NodeJS express service with some utility endpoints",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
